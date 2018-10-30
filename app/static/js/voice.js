@@ -72,7 +72,7 @@ function generate(text) {
                 audio.src=URL.createObjectURL(blob);
                 audio.play();
                 var interval=setInterval(function(){
-                    ginger.animateMouthCloseExpression(0,0.65);
+                    animateSpeakingExpression(0,0.65);
                 },50);
                 audio.addEventListener("ended", function(){
                     clearInterval(interval);
