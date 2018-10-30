@@ -632,6 +632,7 @@ var Ginger = function() {
     var selectControl;
     var found = false;
 
+
     for (var control in controls) {
       if (controls[control].control == value) {
         selected = value;
@@ -640,6 +641,7 @@ var Ginger = function() {
         break;
       }
     }
+    // console.log(value,controls,selected,selectControl);
 
     if (!found) {
       return;
@@ -795,6 +797,157 @@ var Ginger = function() {
       // Start the render loop.
       animate();
 
-    }
+    },
+    onrangeslide:onrangeslide,
+    select:select
   };
 };
+
+
+var expressionRange={
+    happy:{
+        eyes:{
+          initial:0.1,
+          final:1,
+          step:0.05,
+          reverse:true,
+        },
+        expression:{
+          initial:0.5,
+          step:0.05,
+          final:1.005,
+        }
+    },
+    angry:{
+      expression:{
+        initial:0.5,
+        step:0.05,
+        final:0.05,
+      }
+    },
+    talking:{
+      jawrange:{
+        initial:0,
+        step:0.02,
+        final:0.22,
+      },
+      lipsync:{
+        initial:0.6,
+        step:0.025,
+        final:0.85,
+        reverse:true
+      }
+    }
+
+};
+
+function animateEyesMoveExpression(eyeValue){
+            ginger.select("eyes");
+            ginger.onrangeslide({target:{valueAsNumber:eyeValue}});
+            // console.log(eyeValue,expressionValue)
+            if(
+              expressionRange.happy.eyes.final>=eyeValue &&
+              expressionRange.happy.eyes.initial<=eyeValue 
+            )
+            setTimeout(function(){
+              if(expressionRange.happy.eyes.final>eyeValue && expressionRange.happy.eyes.final>(eyeValue+expressionRange.happy.eyes.step))  
+              animateEyesMoveExpression(eyeValue+expressionRange.happy.eyes.step)
+              else
+              animateEyesReverseExpression(eyeValue);
+              },50);
+}
+
+function animateEyesReverseExpression(eyeValue){
+  ginger.select("eyes");
+  ginger.onrangeslide({target:{valueAsNumber:eyeValue}});
+  if(
+    expressionRange.happy.eyes.final>eyeValue &&
+    expressionRange.happy.eyes.initial<eyeValue)
+  setTimeout(function(){  
+    if(expressionRange.happy.eyes.initial<eyeValue && expressionRange.happy.eyes.initial<(eyeValue-expressionRange.happy.eyes.step))
+    animateEyesReverseExpression(eyeValue-expressionRange.happy.eyes.step)
+    },50);
+}
+
+function animateHappyExpression(expressionValue){
+  ginger.select("expression");
+  ginger.onrangeslide({target:{valueAsNumber:expressionValue}});
+  // console.log(eyeValue,expressionValue)
+  if(
+    expressionRange.happy.expression.final>expressionValue 
+    && expressionRange.happy.expression.initial<expressionValue 
+  )
+  setTimeout(function(){
+    if(expressionRange.happy.expression.final>expressionValue)  
+    animateHappyExpression(expressionValue+expressionRange.happy.expression.step)
+    else
+    animateHappyReverseExpression(expressionValue);
+    },30);
+}
+function animateHappyReverseExpression(){
+  ginger.select("expression");
+  ginger.onrangeslide({target:{valueAsNumber:0.5}});
+}
+function animateAngryExpression(angryValue){
+  ginger.select("expression");
+  ginger.onrangeslide({target:{valueAsNumber:angryValue}});
+  // console.log(eyeValue,expressionValue)
+  if(
+    expressionRange.angry.expression.final<angryValue 
+    && expressionRange.angry.expression.initial>angryValue 
+  )
+  setTimeout(function(){
+    if(expressionRange.angry.expression.final<angryValue && expressionRange.angry.expression.final<(angryValue-expressionRange.angry.expression.step))  
+    animateAngryExpression(angryValue-expressionRange.angry.expression.step)
+    // else
+    // animateHappyReverseangry(angryValue);
+    },30);
+}
+
+function animateSpeakingExpression(jawValue,lipSyncValue){
+  ginger.select("jawrange");
+  ginger.onrangeslide({target:{valueAsNumber:jawValue}});
+  ginger.select("lipsync");
+  ginger.onrangeslide({target:{valueAsNumber:lipSyncValue}});
+  
+  if(
+    expressionRange.talking.jawrange.final>jawValue &&
+    expressionRange.talking.jawrange.initial<=jawValue ||
+    expressionRange.talking.lipsync.final>lipSyncValue &&
+    expressionRange.talking.lipsync.initial<=lipSyncValue 
+  )
+  setTimeout(function(){
+    if(expressionRange.talking.jawrange.final>jawValue 
+      && expressionRange.talking.jawrange.final>(jawValue+expressionRange.talking.jawrange.step) 
+      && expressionRange.talking.lipsync.final>lipSyncValue 
+      && expressionRange.talking.lipsync.final>(lipSyncValue+expressionRange.talking.lipsync.step) 
+    )  
+    animateSpeakingExpression(jawValue+expressionRange.talking.jawrange.step,lipSyncValue+expressionRange.talking.lipsync.step)
+    else
+    animateMouthCloseExpression(jawValue,lipSyncValue);
+    },50);
+}
+
+function animateMouthCloseExpression(jawValue,lipSyncValue){
+  ginger.select("jawrange");
+  ginger.onrangeslide({target:{valueAsNumber:jawValue}});
+  ginger.select("lipsync");
+  ginger.onrangeslide({target:{valueAsNumber:lipSyncValue}});
+  
+  if(
+    expressionRange.talking.jawrange.final>jawValue &&
+    expressionRange.talking.jawrange.initial<=jawValue ||
+    expressionRange.talking.lipsync.final>lipSyncValue &&
+    expressionRange.talking.lipsync.initial<=lipSyncValue 
+  )
+  setTimeout(function(){
+    if(expressionRange.talking.jawrange.initial<=jawValue 
+      && expressionRange.talking.jawrange.initial<=(jawValue-expressionRange.talking.jawrange.step) 
+      && expressionRange.talking.lipsync.initial<=lipSyncValue 
+      && expressionRange.talking.lipsync.initial<=(lipSyncValue-expressionRange.talking.lipsync.step) 
+    )  
+    animateMouthCloseExpression(jawValue-expressionRange.talking.jawrange.step,lipSyncValue-expressionRange.talking.lipsync.step)
+    // else
+    // animateMouthCloseExpression(jawValue,lipSyncValue);
+    },50);
+}

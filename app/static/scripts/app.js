@@ -39,8 +39,11 @@ script.onload = initGinger;
 document.head.appendChild(script);
 
 function initGinger() {
-  var ginger = new Ginger();
+  ginger = new Ginger();
   ginger.init();
+    setInterval(function(){
+      animateEyesMoveExpression(0.1);
+    },5000)
 }
 
 // Async loading w/bindings for copy to clipboard

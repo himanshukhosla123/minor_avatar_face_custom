@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
-  <title>Stickman Ventures - Ginger WebGL Morph Demo</title>
+  <title>Minor Project - Human Avatar</title>
   <meta description="Simple facial rigging utilizing morph targets powered by three.js in WebGL.">
   <meta name="theme-color" content="#96CA33">
   <link rel="manifest" href="/manifest.json">
@@ -17,8 +17,7 @@
   <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <link rel="import" id="bundle" href="elements/elements.html" async>
+  <link rel="import" id="bundle" href="elements/elements.html" async><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous"/>
 
   <style>
     html, body {
@@ -31,133 +30,6 @@
       font-family: Arial;
     }
 
-    #sv-lab-header {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 65px;
-      background-color: #fff;
-    }
-    #sv-lab-header div {
-      min-width: 300px;
-      text-align: center;
-    }
-
-    #sv-logo {
-      width: 100px;
-      height: 62px;
-      background: url(images/sv-green.svg) no-repeat center center;
-      background-size: contain;
-      display: block;
-      margin: auto;
-    }
-
-    #hide-header {
-      color: #2732FF;
-      text-decoration: none;
-      border-bottom: 1px solid #2732FF;
-      font-size: 14px;
-    }
-
-    #screenshot-image {
-      width: 100%;
-      height: calc(100% - 60px);
-    }
-
-    #counter {
-      position: absolute;
-      top: calc(50% - 50px - 75px);
-      left: calc(50% - 100px);
-      width: 200px;
-      height: 100px;
-      padding: 5px;
-      line-height: 100px;
-      text-align: center;
-      font-size: 64px;
-      border-radius: 25px;
-      background: rgba(0, 0, 0, 0.75);
-      color: white;
-
-      -webkit-user-select: none;  /* Chrome all / Safari all */
-      -moz-user-select: none;     /* Firefox all */
-      -ms-user-select: none;      /* IE 10+ */
-      user-select: none;          /* Likely future */
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .panel {
-      position: absolute;
-      width: 100%;
-      height: 145px;
-      bottom: 0;
-      background: rgba(90, 90, 90, 1);
-    }
-
-    label {
-      padding: 10px 0 0 1.2em;
-      display: block;
-      color: #fff;
-    }
-
-    .full-shadow {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal {
-      position: absolute;
-      z-index: 100;
-      top: 25%;
-      left: 25%;
-      right: 25%;
-      padding: 15px;
-      border-radius: 5px;
-      background: rgb(100, 100, 100);
-      color: #fafafa;
-    }
-
-    .modal h1, .modal h2, .modal h3, .modal h4 {
-      margin-top: 0;
-    }
-
-    .clearfix {
-      clear: both;
-    }
-
-    button, .button {
-      padding: 10px;
-      margin: 0 16px;
-      outline: none;
-      border: 1px solid rgb(90, 90, 90);
-      background: #9ed639;
-      color: #000;
-      min-width: 150px;
-      text-decoration: none;
-      border-radius: 3px;
-    }
-
-    .buttoncolor-ON {
-      background: #9ed639;
-    }
-
-    .buttoncolor-OFF {
-      background: #FF6C70;
-    }
-
-    button:active, .button:active {
-      background: rgb(90, 90, 90);
-    }
-
-    button:active:hover, .button:active:hover {
-      background: rgb(80, 80, 80);
-    }
 
     #range {
       width: 90%;
@@ -313,7 +185,7 @@
 
   <div id="renderer"></div>
 
-  <div class="panel">
+  <div class="panel" style="display:block;">
     <div class="flex-container">
       <section>
         <!-- Controls for changing the morphs. -->
@@ -346,6 +218,21 @@
     </div>    
   </div>
 
+  <!-- <div class="panel"> -->
+    <div id="controls">
+      <button id="recordButton"  class="btn"><i class="fa fa-microphone"></i> <br/> Record</button>
+      <button id="pauseButton" disabled  class="btn"><i class="fa fa-pause"></i> <br/>Pause</button>
+      <button id="stopButton" disabled  class="btn"><i class="fa fa-stop"></i> <br/>Stop</button>
+      <button onclick="authorization()" id="signin" class="btn"><i class="fa fa-sign-in"></i> <br/>Sign in</button>
+      <div class="fab-container hidden" id="fab-container">
+        <a class="btn-floating" onclick="animateHappyExpression(0.505)"><i class="fa fa-smile-beam"></i></a>
+        <a class="btn-floating" onclick="animateAngryExpression(0.495)"><i class="fa fa-angry"></i></a>
+        <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+      </div>
+      <!-- <button onclick="handleSignOutClick()"  class="btn">Sign Out</button> --> 
+     </div>
+  <!-- </div> -->
+
   <div id="screenshot-modal" class="hidden">
     <div class="full-shadow"></div>
     <div class="modal">
@@ -354,21 +241,12 @@
     </div>
   </div>
 
+
   <div id="share-modal" class="hidden">
     <div class="full-shadow"></div>
     <div class="modal">
       <h1>Share Link <button id="copytoclipboard-share" data-clipboard-target="#share-link" type="button">Copy to Clipboard</button></h1>
       <textarea id="share-link"></textarea>
-    </div>
-  </div>
-
-  <div id="version-modal" class="hidden">
-    <div class="full-shadow"></div>
-    <div class="modal">
-      <h1>New Version: Ginger v2.1.0</h1>
-      <p>➡ Now a Progressive Web App - Use "Add to Homescreen"</p>
-      <p>➡ Accessibility updates for color contract</p>
-      <p>➡ 100/100 in <a href="https://github.com/GoogleChrome/lighthouse" style="color:#ffffff">Lighthouse</a> audit</p>
     </div>
   </div>
 
@@ -388,6 +266,67 @@
   <script src="scripts/easing.js"></script>
   <script src="scripts/ginger.js"></script>
   <script src="scripts/app.js"></script>
+  <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  crossorigin="anonymous"></script>
+   <script src="https://apis.google.com/js/client.js"></script>
+<!--<script src="https://www.gstatic.com/fir.ebasejs/5.5.3/firebase.js"></script>-->
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+  <script src="js/auth2.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/mainVoiceJs.js"></script>
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        #controls{
+            position: absolute;
+            z-index: 100;
+            right: 0px;
+            bottom:0px;
+            display: flex;
+            flex-direction: "row";
+            width:100%;
+        }
+       .btn{
+          padding: 20px;
+          min-height: 80px;
+           min-width: 120px;
+           flex:1;
+           margin:10px;
+        }
+        .btn .fa{
+          font-size:32px;
+          margin-bottom: 5px;
+        }
+        .btn-floating{
+          display: inline-block;
+          position: relative;
+          outline: none;
+          -webkit-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          width: 60px;
+          height: 60px;
+          line-height: 60px;
+          text-align: center;
+          font-size:45px;
+          z-index: 999;
+          background-color: #00A3DD;
+          color:white;
+          border-radius: 50%;
+          box-shadow: 0 0 5px rgba(0,0,0,0.15);
+          transition: 0.2s opacity ease-in-out;
+          -webkit-transition: 0.2s opacity ease-in-out;
+          margin-right:15px;
+        }
+        .fab-container{
+          padding:15px;
+          flex:1;
+          text-align:center;
+        }
+    </style>
   <!-- endbuild-->
 </body>
 </html>
