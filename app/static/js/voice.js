@@ -73,7 +73,7 @@ function generate(text) {
                 audio.play();
                 var interval=setInterval(function(){
                     animateSpeakingExpression(0,0.65);
-                },50);
+                },750);
                 audio.addEventListener("ended", function(){
                     clearInterval(interval);
                     console.log("ended");
