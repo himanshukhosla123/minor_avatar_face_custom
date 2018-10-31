@@ -1,7 +1,9 @@
 var baseUrl = "https://myvoice.lyrebird.ai";
 var basrUrlAvatar="https://avatar.lyrebird.ai"
-var clientId = "1CJBAAIWXaFhfUxqB2lTQtga1sy";
-var clientSecret = "$2a$10$5yapuzRSX/GzEiVbQzlOneSWNc5IBlY7ivwVV8nohPdQhrZ2G0pUi";
+var clientId = "1CM9vk2pHyykDzpesF878Ufyfiy";
+// "1CJBAAIWXaFhfUxqB2lTQtga1sy";
+var clientSecret = "$2a$10$m1F0SW07Aw/QlDmJKG4l6Oq1hbLrXhl7ylGpiwheH7XvUXM1i9or2";
+// "$2a$10$5yapuzRSX/GzEiVbQzlOneSWNc5IBlY7ivwVV8nohPdQhrZ2G0pUi";
 var encodedUrl="https%3A%2F%2Fhimanshukhosla123.github.io%2Fminor_avatar_face_custom%2Fapp%2Fstatic%2F";
 var token=localStorage.getItem("acs");
 var code="9818478695";
@@ -72,11 +74,11 @@ function generate(text) {
                 audio.src=URL.createObjectURL(blob);
                 audio.play();
                 var interval=null;
-                audio.addEventListener("onplaying",function(){
+                audio.onplay=function(){
                     interval=setInterval(function(){
                         animateSpeakingExpression(0,0.65);
                     },750);
-                })
+                };
                 audio.addEventListener("ended", function(){
                     if(interval)
                     clearInterval(interval);
