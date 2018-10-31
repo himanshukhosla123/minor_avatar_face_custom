@@ -71,10 +71,14 @@ function generate(text) {
                 var blob = new Blob([view], {type: "audio/x-wav"});
                 audio.src=URL.createObjectURL(blob);
                 audio.play();
-                var interval=setInterval(function(){
-                    animateSpeakingExpression(0,0.65);
-                },750);
+                var interval=null;
+                audio.addEventListener("onplaying",function(){
+                    interval=setInterval(function(){
+                        animateSpeakingExpression(0,0.65);
+                    },750);
+                })
                 audio.addEventListener("ended", function(){
+                    if(interval)
                     clearInterval(interval);
                     console.log("ended");
                });
