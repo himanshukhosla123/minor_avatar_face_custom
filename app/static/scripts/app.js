@@ -96,6 +96,7 @@ function appInit() {
   for (var i = 0; i < overlay.length; i++) {
     overlay[i].addEventListener('click', function(e) {
       var parent = e.target.parentNode;
+      if(parent && parent.classList)
       parent.classList.add('hidden');
     });
   }
