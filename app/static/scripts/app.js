@@ -104,11 +104,11 @@ function appInit() {
   // Ugh...localStorage
   var getVersion = localStorage.getItem('version');
   if (getVersion === undefined || getVersion === null) {
-    document.getElementById('version-modal').classList.remove('hidden');
+    // document.getElementById('version-modal').classList.remove('hidden');
     localStorage.setItem('version', version);
   } else {
     if (getVersion !== version) {
-      document.getElementById('version-modal').classList.remove('hidden');
+      // document.getElementById('version-modal').classList.remove('hidden');
       localStorage.setItem('version', version);
     }
   }
