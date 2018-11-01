@@ -88,12 +88,7 @@ function createLink(blob,text) {
     link.innerHTML = link.download;
     
     base64text.innerHTML=text;
-    //add the new audio and a elements to the li element
-//    li.appendChild(au);
     li.appendChild(link);
-//    li.appendChild(base64text);
-    //add the li element to the ordered list
-//    document.appendChild(li);
 }
 
 function getData(audioFile, callback) {
@@ -141,7 +136,7 @@ function apicall(audioBase64){
 //        alert(data.queryResult.fulfillmentText);
         // responsiveVoice.speak(data.queryResult.fulfillmentText);
         if(data.queryResult.fulfillmentText)
-        generate(data.queryResult.fulfillmentText);
+        generate(data.queryResult.fulfillmentText,data.queryResult.action);
         else
         alert("voice analysis failed");
     }).fail(function(err){
