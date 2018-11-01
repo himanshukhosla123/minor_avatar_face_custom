@@ -30,7 +30,7 @@ $(document).ready(function(){
         getGenerated();
     }
     else {
-        getToken();
+        // getToken();
     }
 });
 
