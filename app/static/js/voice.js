@@ -61,7 +61,7 @@ function generate(text,action,query) {
                     console.log("ended");
                });
         console.log(text);      
-        if(text=="input.welcome")
+        if(action=="input.welcome")
         audio.src="welcome.wav";
         else if(text=="'I'm so glad you told me. You should be able to feel safe at school; that's not fair at all'. We will deal with this t")
         audio.src="bully.wav";
