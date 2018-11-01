@@ -63,7 +63,7 @@ function generate(text,action,intentName) {
         console.log(text);      
         if(action=="input.welcome")
         audio.src="welcome.wav";
-        else if(intentName=="bully")
+        else if(intentName=="bullly")
         audio.src="bully.wav";
         else if(intentName=="Feverintent")
             audio.src="fever.wav";
