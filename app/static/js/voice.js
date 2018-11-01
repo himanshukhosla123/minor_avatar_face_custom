@@ -61,16 +61,15 @@ function generate(text,action,query) {
                     console.log("ended");
                });
         console.log(text);      
-        if(text=="high temperature")
+        if(text=="intent.welcome")
+        audio.src="welcome.wav";
+        else if(text=="'I'm so glad you told me. You should be able to feel safe at school; that's not fair at all'. We will deal with this t")
+        audio.src="bully.wav";
+        else if(text=="Okay, thanks. You are suffering from fever. So, a 50 mg dose of paracetamol would work for you. Do you want me order it for you?")
             audio.src="fever.wav";
         else 
-        if(text=="hii")
-        audio.src="welcome.wav";
-        else 
-        if(text=="give me a motivation quote")
         audio.src="motivational.wav";
-        else if(text=="i was bullied")
-        audio.src="bully.wav";
+        
         if(audio.src)
         audio.play();
         // if(token && token!="null")
