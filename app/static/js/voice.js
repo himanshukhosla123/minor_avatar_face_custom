@@ -61,13 +61,13 @@ function generate(text,action,query) {
                     console.log("ended");
                });
         console.log(text);      
-        if(action=="input.welcome")
+        if(action=="intent.welcome")
         audio.src="welcome.wav";
-        else if(text=="'I'm so glad you told me. You should be able to feel safe at school; that's not fair at all'. We will deal with this t")
+        else if(action=="intent.bully")
         audio.src="bully.wav";
-        else if(text=="Okay, thanks. You are suffering from fever. So, a 50 mg dose of paracetamol would work for you. Do you want me order it for you?")
+        else if(action=="intent.Feverintent")
             audio.src="fever.wav";
-        else if(text=="Life is 10% what happens to you and 90% how you react to it!")
+        else if(action=="intent.NeedQuote")
         audio.src="motivational.wav";
         else alert("Sorry can you say that again?")
         if(audio.src)
