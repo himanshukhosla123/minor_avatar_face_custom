@@ -135,7 +135,7 @@ function apicall(audioBase64){
         console.log(data);
 //        alert(data.queryResult.fulfillmentText);
         // responsiveVoice.speak(data.queryResult.fulfillmentText);
-        if(data.queryResult.fulfillmentText)
+        if(data.queryResult.fulfillmentText && data.queryResult.action)
         generate(data.queryResult.fulfillmentText,data.queryResult.action);
         else
         alert("voice analysis failed");
