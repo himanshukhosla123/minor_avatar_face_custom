@@ -48,7 +48,7 @@ window.location.href="https://myvoice.lyrebird.ai/authorize?response_type=token&
 }
 
 
-function generate(text,action,query) {
+function generate(text,action,intentName) {
     let audio=document.createElement("audio");
               audio.onplay=function(){
                     interval=setInterval(function(){
@@ -61,13 +61,13 @@ function generate(text,action,query) {
                     console.log("ended");
                });
         console.log(text);      
-        if(action=="intent.welcome")
+        if(action=="input.welcome")
         audio.src="welcome.wav";
-        else if(action=="intent.bully")
+        else if(intentName=="bully")
         audio.src="bully.wav";
-        else if(action=="intent.Feverintent")
+        else if(intentName=="Feverintent")
             audio.src="fever.wav";
-        else if(action=="intent.NeedQuote")
+        else if(intentName=="NeedQuote")
         audio.src="motivational.wav";
         else alert("Sorry can you say that again?")
         if(audio.src)
