@@ -135,8 +135,8 @@ function apicall(audioBase64){
         console.log(data);
 //        alert(data.queryResult.fulfillmentText);
         // responsiveVoice.speak(data.queryResult.fulfillmentText);
-        if(data.queryResult.fulfillmentText && data.queryResult.action)
-        generate(data.queryResult.fulfillmentText,data.queryResult.action);
+        if(data.queryResult.fulfillmentText)
+        generate(data.queryResult.fulfillmentText,data.queryResult.action,data.queryResult.intent?data.queryResult.intent.displayName:undefined);
         else
         alert("voice analysis failed");
     }).fail(function(err){
