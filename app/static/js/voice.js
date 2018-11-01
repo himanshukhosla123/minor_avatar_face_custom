@@ -1,6 +1,6 @@
 var baseUrl = "https://myvoice.lyrebird.ai";
 var basrUrlAvatar="https://avatar.lyrebird.ai"
-var clientId = "1CNHUKm1P8xpxB7sXWltuBCoNFA";
+var clientId = "1CJBAAIWXaFhfUxqB2lTQtga1sy";
 var clientSecret = "$2a$10$5yapuzRSX/GzEiVbQzlOneSWNc5IBlY7ivwVV8nohPdQhrZ2G0pUi";
 var encodedUrl="https%3A%2F%2Fhimanshukhosla123.github.io%2Fminor_avatar_face_custom%2Fapp%2Fstatic%2F";
 var token=localStorage.getItem("acs");
