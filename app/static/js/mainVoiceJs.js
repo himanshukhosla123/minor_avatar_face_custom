@@ -128,8 +128,8 @@ function apicall(audioBase64,text){
             "inputAudio":audioBase64,
             "queryInput":{
                 "audioConfig":{
-                    // sampleRateHertz:"",
-                    // audioEncoding:"",
+                    sampleRateHertz:"LINEAR16",
+                    audioEncoding:16000,
                     "languageCode":"en"
                 }
             },
@@ -145,12 +145,12 @@ function apicall(audioBase64,text){
         console.log(data);
 //        alert(data.queryResult.fulfillmentText);
         // responsiveVoice.speak(data.queryResult.fulfillmentText);
-        if(data.queryResult.fulfillmentText)
+        if(data.queryResult && data.queryResult.fulfillmentText)
         generate(data.queryResult.fulfillmentText,data.queryResult.action,data.queryResult.intent?data.queryResult.intent.displayName:undefined);
         else
         alert("voice analysis failed");
     }).fail(function(err){
-        console.log(err.responseJSON);
+        console.log(err);
     })
 }
 
