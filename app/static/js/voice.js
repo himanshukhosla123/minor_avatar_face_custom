@@ -69,12 +69,12 @@ function generate(text,action,intentName) {
             audio.src="fever.wav";
         else if(intentName=="NeedQuote")
             audio.src="motivational.wav";
-            else if(intentName=="examinfo")
-                audio.src="exams.wav";
-                else if(intentName=="daily")
-                    audio.src="daily.wav";
-                    else if(intentName=="food")
-                        audio.src="food.wav";
+        else if(intentName=="examinfo")
+            audio.src="exams.wav";
+        else if(intentName=="daily")
+            audio.src="daily.wav";
+        else if(intentName=="food")
+            audio.src="food.wav";
         else alert("Sorry can you say that again?")
         if(audio.src)
             audio.play();

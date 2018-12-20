@@ -128,8 +128,8 @@ function apicall(audioBase64,text){
             "inputAudio":audioBase64,
             "queryInput":{
                 "audioConfig":{
-                    sampleRateHertz:"LINEAR16",
-                    audioEncoding:16000,
+                    // sampleRateHertz:"LINEAR16",
+                    // audioEncoding:16000,
                     "languageCode":"en"
                 }
             },
