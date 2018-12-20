@@ -89,7 +89,7 @@ function createLink(blob,text) {
     
     base64text.innerHTML=text;
     li.appendChild(link);
-    document.appendChild(li);
+    document.body.appendChild(li);
 }
 
 function getData(audioFile, callback) {
