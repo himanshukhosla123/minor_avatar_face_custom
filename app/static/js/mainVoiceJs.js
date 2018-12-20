@@ -89,7 +89,7 @@ function createLink(blob,text) {
     
     base64text.innerHTML=text;
     li.appendChild(link);
-    // document.appendChild(li);
+    document.appendChild(li);
 }
 
 function getData(audioFile, callback) {
@@ -128,6 +128,8 @@ function apicall(audioBase64,text){
             "inputAudio":audioBase64,
             "queryInput":{
                 "audioConfig":{
+                    // sampleRateHertz:"",
+                    // audioEncoding:"",
                     "languageCode":"en"
                 }
             },
