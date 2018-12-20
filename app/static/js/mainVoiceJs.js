@@ -110,18 +110,24 @@ var projectId="anu-bknhvv";
 //var access_token="ya29.GlsvBvRcx0I1Dj43PpZ91wPppkl5dEcveIMm1OaoGexWB9JMtVYhzSCTjWeo54Pf1-NNYQsU8OXYJYhffIGvw16pBd_1fcSOJbFWOscjGSCGtH_lVbLzzTqf7gxJ";
 var key="AIzaSyA5E0XSqyaQsoj2IuAjDIGDbhZCKL5Atqw";
 
-function apicall(audioBase64){
+function apicall(audioBase64,text){
     console.log("making api call")
     if(!access_token)alert("Please first log in")
     $.ajax({
         url:"https://dialogflow.googleapis.com/v2/projects/"+projectId+"/agent/sessions/"+sessionId+":detectIntent?key="+key+"&alt=json",
         method:"POST",
 //        dataType: 'jsonp',
-        data:JSON.stringify({
+        data:JSON.stringify(text?{
+            "queryInput":{
+                "text":{
+                    text:text,
+                    "languageCode":"en"
+                }
+            }
+        }:{
             "inputAudio":audioBase64,
             "queryInput":{
                 "audioConfig":{
-                    text,
                     "languageCode":"en"
                 }
             },
