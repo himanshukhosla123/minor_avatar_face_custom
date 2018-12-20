@@ -121,6 +121,7 @@ function apicall(audioBase64){
             "inputAudio":audioBase64,
             "queryInput":{
                 "audioConfig":{
+                    text,
                     "languageCode":"en"
                 }
             },
