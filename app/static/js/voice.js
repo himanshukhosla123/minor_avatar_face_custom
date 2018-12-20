@@ -62,16 +62,22 @@ function generate(text,action,intentName) {
                });
         console.log(text);      
         if(action=="input.welcome")
-        audio.src="welcome.wav";
+            audio.src="welcome.wav";
         else if(intentName=="bullly")
-        audio.src="bully.wav";
+            audio.src="bully.wav";
         else if(intentName=="Feverintent")
             audio.src="fever.wav";
         else if(intentName=="NeedQuote")
-        audio.src="motivational.wav";
+            audio.src="motivational.wav";
+            else if(intentName=="examinfo")
+                audio.src="exams.wav";
+                else if(intentName=="daily")
+                    audio.src="daily.wav";
+                    else if(intentName=="food")
+                        audio.src="food.wav";
         else alert("Sorry can you say that again?")
         if(audio.src)
-        audio.play();
+            audio.play();
         // if(token && token!="null")
         //  $.ajax({
         //     method: 'post',
