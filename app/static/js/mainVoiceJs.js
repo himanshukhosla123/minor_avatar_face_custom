@@ -111,7 +111,7 @@ var projectId="anu-bknhvv";
 var key="AIzaSyA5E0XSqyaQsoj2IuAjDIGDbhZCKL5Atqw";
 
 function apicall(audioBase64,text){
-    console.log("making api call")
+    // console.log("making api call")
     if(!access_token)alert("Please first log in")
     $.ajax({
         url:"https://dialogflow.googleapis.com/v2/projects/"+projectId+"/agent/sessions/"+sessionId+":detectIntent?key="+key+"&alt=json",

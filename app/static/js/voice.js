@@ -34,6 +34,21 @@ $(document).ready(function(){
     }
 });
 
+function searchInput(){
+    let val=$("#texxt").val();
+    if(!val){
+        alert("Please Enter Something")
+    }
+    else if(!access_token){
+        if(!access_token)alert("Please first log in")
+    }
+    else {
+        apicall(null,val);
+        $("#texxt").val("")
+    }
+    return false;
+}  
+
 function extractAccessToken(url){
     try{
     return url.split("access_token=")[1].split("&")[0];
@@ -61,7 +76,7 @@ function generate(text,action,intentName) {
                     console.log("ended");
                });
         console.log(text);      
-        if(action=="input.welcome")
+        if(intentName=="Default Welcome Intent")
             audio.src="welcome.wav";
         else if(intentName=="bullly")
             audio.src="bully.wav";
@@ -75,7 +90,11 @@ function generate(text,action,intentName) {
             audio.src="daily.wav";
         else if(intentName=="food")
             audio.src="food.wav";
-        else alert("Sorry can you say that again?")
+        else if(intentName=="missu")
+            audio.src="missu.wav";
+        else if(intentName=="Surrounds")
+            audio.src="weather.wav";
+        else audio.src="repeat.wav"
         if(audio.src)
             audio.play();
         // if(token && token!="null")
